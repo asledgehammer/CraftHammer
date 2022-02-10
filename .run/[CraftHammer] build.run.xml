@@ -1,0 +1,31 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="[CraftHammer] build" type="GradleRunConfiguration" factoryName="Gradle">
+    <ExternalSystemSettings>
+      <option name="executionName" />
+      <option name="externalProjectPath" value="$PROJECT_DIR$" />
+      <option name="externalSystemIdString" value="GRADLE" />
+      <option name="scriptParameters" value="--rerun-tasks" />
+      <option name="taskDescriptions">
+        <list />
+      </option>
+      <option name="taskNames">
+        <list>
+          <option value=":crafthammer_util:build" />
+          <option value=":crafthammer_util:jar" />
+          <option value=":crafthammer_util:publishToMavenLocal" />
+          <option value=":crafthammer_api:build" />
+          <option value=":crafthammer_api:jar" />
+          <option value=":crafthammer_api:publishToMavenLocal" />
+          <option value=":crafthammer:build" />
+          <option value=":crafthammer:jar" />
+          <option value=":crafthammer:publishToMavenLocal" />
+        </list>
+      </option>
+      <option name="vmOptions" />
+    </ExternalSystemSettings>
+    <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+    <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+    <DebugAllEnabled>false</DebugAllEnabled>
+    <method v="2" />
+  </configuration>
+</component>

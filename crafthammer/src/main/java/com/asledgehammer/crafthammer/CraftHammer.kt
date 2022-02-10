@@ -5,6 +5,7 @@ package com.asledgehammer.crafthammer
 import com.asledgehammer.crafthammer.util.cfg.YamlFile
 import com.asledgehammer.crafthammer.util.component.TextComponent
 import com.asledgehammer.craftnail.CraftNail
+import com.asledgehammer.craftnail.CraftNail.cfg
 import com.asledgehammer.sledgehammer.api.entity.living.Player
 
 /**

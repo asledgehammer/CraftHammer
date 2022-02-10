@@ -14,16 +14,10 @@ repositories {
 }
 
 dependencies {
-    implementation project(':crafthammer_util')
-    implementation project(':crafthammer_api')
+    implementation project(':CraftHammer_Util')
+    implementation project(':CraftHammer_API')
     implementation "com.asledgehammer.crafthammer:CraftNail:${project.CRAFTHAMMER_VERSION}"
     implementation 'org.yaml:snakeyaml:1.9'
-}
-
-jar {
-    archiveBaseName.set('CraftHammer')
-    archiveVersion.set(project.CRAFTHAMMER_VERSION.toString())
-    archiveClassifier.set('')
 }
 
 shadowJar {
@@ -34,10 +28,7 @@ shadowJar {
 
 publishing {
     publications {
-        maven(MavenPublication) {
-            groupId = group
-            artifactId = 'CraftHammer'
-            version = project.CRAFTHAMMER_VERSION
+        mavenJava(MavenPublication) {
             from components.java
         }
     }
