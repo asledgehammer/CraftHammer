@@ -1,0 +1,9 @@
+rootProject.name = 'crafthammer'
+
+include ':woodglue'
+
+include ':craftnail'   // Private repository for CraftHammer. (Legal reasons)
+include ':crafthammer' // Public repository for CraftHammer.
+
+include ':crafthammer_api'
+include ':crafthammer_util'

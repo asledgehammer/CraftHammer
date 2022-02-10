@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+version project.CRAFTHAMMER_VERSION
+
+jar {
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)) {
+            exclude 'META-INF', 'META-INF/**' , '**/about.html', '*/about.html', 'about.html'
+        }
+    }
+}

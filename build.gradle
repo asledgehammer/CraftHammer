@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.0'
+}
+
+project.ext.set('GROUP_NAME', 'com.asledgehammer')
+project.ext.set('PZ_VERSION', '41.65')
+
+project.ext.set('CRAFTHAMMER_VERSION', '1.0.5_BETA_2')
+project.ext.set('CRAFTHAMMER_JAR_NAME', 'CraftHammer_PZ-' + project.PZ_VERSION + '_' + project.CRAFTHAMMER_VERSION)
+
+subprojects {
+
+    apply plugin: 'java'
+    sourceCompatibility = 1.15
+    targetCompatibility = 1.15
+
+    group project.GROUP_NAME
+
+    compileJava.options.encoding = 'UTF-8'
+    jar.duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies {
+
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
+
+        // PZ Libraries
+        compileOnly files('../lib/istack-commons-runtime.jar')
+        compileOnly files('../lib/jassimp.jar')
+        compileOnly files('../lib/javacord-2.0.17-shaded.jar')
+        compileOnly files('../lib/javax.activation-api.jar')
+        compileOnly files('../lib/jaxb-api.jar')
+        compileOnly files('../lib/jaxb-runtime.jar')
+        compileOnly files('../lib/lwjgl.jar')
+        compileOnly files('../lib/lwjgl-glfw.jar')
+        compileOnly files('../lib/lwjgl-jemalloc.jar')
+        compileOnly files('../lib/lwjgl-jemalloc-natives-windows.jar')
+        compileOnly files('../lib/lwjgl-jemalloc-natives-windows-x86.jar')
+        compileOnly files('../lib/lwjgl-natives-windows.jar')
+        compileOnly files('../lib/lwjgl-natives-windows-x86.jar')
+        compileOnly files('../lib/lwjgl-opengl.jar')
+        compileOnly files('../lib/lwjgl_util.jar')
+        compileOnly files('../lib/sqlite-jdbc-3.27.2.1.jar')
+        compileOnly files('../lib/trove-3.0.3.jar')
+        compileOnly files('../lib/uncommons-maths-1.2.3.jar')
+
+        compileOnly 'org.fusesource.jansi:jansi:2.4.0'
+        compileOnly 'org.joml:joml:1.10.3'
+        compileOnly 'org.yaml:snakeyaml:1.9'
+
+        // PZ classes wrapped in a fine JAR.
+        compileOnly files('../lib/zombie_' + project.PZ_VERSION + '.jar')
+    }
+}
