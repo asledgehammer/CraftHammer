@@ -1,25 +1,44 @@
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm'
+    id 'maven-publish'
+    id "com.github.johnrengelman.shadow"
 }
 
-configurations {
-    shade
-    compile.extendsFrom shade
-}
-
+group 'com.asledgehammer.crafthammer'
 version project.CRAFTHAMMER_VERSION
 
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 dependencies {
-    implementation project(":crafthammer_util")
-    implementation project(":crafthammer_api")
-    implementation project(":craftnail")
+    implementation project(':crafthammer_util')
+    implementation project(':crafthammer_api')
+    implementation "com.asledgehammer.crafthammer:CraftNail:${project.CRAFTHAMMER_VERSION}"
+    implementation 'org.yaml:snakeyaml:1.9'
 }
 
 jar {
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)) {
-            exclude 'META-INF', 'META-INF/**' , '**/about.html', '*/about.html', 'about.html'
+    archiveBaseName.set('CraftHammer')
+    archiveVersion.set(project.CRAFTHAMMER_VERSION.toString())
+    archiveClassifier.set('')
+}
+
+shadowJar {
+    archiveBaseName.set('CraftHammer')
+    archiveVersion.set(project.CRAFTHAMMER_VERSION.toString())
+    archiveClassifier.set('')
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = 'CraftHammer'
+            version = project.CRAFTHAMMER_VERSION
+            from components.java
         }
     }
 }

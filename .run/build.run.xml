@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="build" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="[CraftNail] build" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -10,8 +10,9 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="build" />
-          <option value="jar" />
+          <option value="craftnail:build" />
+          <option value="craftnail:jar" />
+          <option value="craftnail:publishToMavenLocal" />
         </list>
       </option>
       <option name="vmOptions" />
