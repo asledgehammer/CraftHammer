@@ -68,7 +68,7 @@ object Events {
   @JvmStatic
   fun dispatch(command: Command, commander: CommandSender): CommandExecution {
     val response = Command.Response()
-    val key = command.name.toLowerCase().trim()
+    val key = command.name.lowercase(Locale.getDefault()).trim()
     val execution = CommandExecution(command, commander, response)
     val wrappers = sortedCommandWrappers[key] ?: return execution
     response.found = true
@@ -142,7 +142,7 @@ object Events {
         if (commandHandler != null) {
           val wrapper = CommandHandleWrapper(listener, commandHandler, method)
           for (command in commandHandler.commands) {
-            val key = command.toLowerCase().trim()
+            val key = command.lowercase(Locale.getDefault()).trim()
             commandWrappers.computeIfAbsent(key) { ArrayList() }.add(wrapper)
           }
         }

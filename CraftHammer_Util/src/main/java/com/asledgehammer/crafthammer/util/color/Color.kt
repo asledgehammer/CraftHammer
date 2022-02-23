@@ -1,4 +1,4 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate", "unused", "SameParameterValue")
 @file:OptIn(ExperimentalUnsignedTypes::class)
 
 package com.asledgehammer.crafthammer.util.color
@@ -60,7 +60,7 @@ class Color(var r: UByte, var g: UByte, var b: UByte, var a: UByte = 255u) {
     }
 
     private fun verifyRange(min: Int, max: Int, value: Int, name: String) {
-      require(value in (min + 1) until max) {
+      require(value > min - 1 && value < max + 1) {
         "The value '${name}' is out of range. (min: $min, max: $max, given: $value)"
       }
     }

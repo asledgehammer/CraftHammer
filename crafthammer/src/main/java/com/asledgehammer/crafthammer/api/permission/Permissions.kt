@@ -211,7 +211,7 @@ object Permissions {
   /** TODO: Document. */
   @JvmStatic
   fun getGroup(name: String): PermissionGroup {
-    val formattedName = name.toLowerCase().trim()
+    val formattedName = name.lowercase(Locale.getDefault()).trim()
     val group = groupsByName[formattedName]
     requireNotNull(group) { "Permission group not found: $formattedName" }
     return group
@@ -235,7 +235,7 @@ object Permissions {
   /** TODO: Document. */
   @JvmStatic
   fun removeGroup(name: String) {
-    val formattedName = name.toLowerCase().trim()
+    val formattedName = name.lowercase(Locale.getDefault()).trim()
     val group = groupsByName.remove(formattedName)
     requireNotNull(group) { "Permission group not found: $formattedName" }
     removeGroup(group)
@@ -260,7 +260,7 @@ object Permissions {
   /** TODO: Document. */
   @JvmStatic
   fun getUser(name: String): PermissionUser {
-    val formattedName = name.toLowerCase().trim()
+    val formattedName = name.lowercase(Locale.getDefault()).trim()
     val user = usersByName[formattedName]
     requireNotNull(user) { "Permission user not found: $formattedName" }
     return user
@@ -284,7 +284,7 @@ object Permissions {
   /** TODO: Document. */
   @JvmStatic
   fun removeUser(name: String) {
-    val formattedName = name.toLowerCase().trim()
+    val formattedName = name.lowercase(Locale.getDefault()).trim()
     val user = usersByName.remove(formattedName)
     requireNotNull(user) { "Permission user not found: $formattedName" }
     removeUser(user)

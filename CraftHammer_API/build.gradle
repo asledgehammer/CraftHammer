@@ -23,3 +23,12 @@ publishing {
         }
     }
 }
+
+task binClass(type: Copy) {
+    mustRunAfter(build)
+    doFirst{ mkdir('../bin/class') }
+    from "./build/classes/java/main", "./build/classes/kotlin/main", "./build/resources/"
+    into "../bin/class"
+    exclude '**/META-INF'
+}
+build.finalizedBy(binClass)

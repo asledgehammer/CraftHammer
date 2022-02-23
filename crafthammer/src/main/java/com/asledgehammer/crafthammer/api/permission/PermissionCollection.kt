@@ -15,7 +15,7 @@ import java.util.*
 abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: String) {
 
   var permissions = HashMap<String, Permission>()
-  val name: String = name.toLowerCase().trim()
+  val name: String = name.lowercase(Locale.getDefault()).trim()
 
   override fun toString(): String = "PermissionCollection(name=$name, id=$id)"
 
@@ -71,7 +71,7 @@ abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: Stri
 
   /** TODO: Document. */
   fun getSub(context: String): List<Permission> {
-    val formattedContext = context.toLowerCase().trim()
+    val formattedContext = context.lowercase(Locale.getDefault()).trim()
     require(formattedContext.isNotEmpty()) { "The context is empty." }
     val list = ArrayList<Permission>()
     for ((_, next) in permissions) if (next.isSub(formattedContext)) list.add(next)
@@ -80,7 +80,7 @@ abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: Stri
 
   /** TODO: Document. */
   fun hasSub(context: String): Boolean {
-    val node = context.toLowerCase().trim()
+    val node = context.lowercase(Locale.getDefault()).trim()
     require(node.isNotEmpty()) { "The context is empty." }
     for ((_, next) in permissions) if (next.isSub(node)) return true
     return false
@@ -88,7 +88,7 @@ abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: Stri
 
   /** TODO: Document. */
   open fun getAllSub(context: String): List<Permission> {
-    val formattedContext = context.toLowerCase().trim()
+    val formattedContext = context.lowercase(Locale.getDefault()).trim()
     require(formattedContext.isNotEmpty()) { "The context is empty." }
     val list = ArrayList<Permission>()
     for ((_, next) in permissions) if (next.isSub(formattedContext)) list.add(next)
@@ -97,7 +97,7 @@ abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: Stri
 
   /** TODO: Document. */
   fun getClosest(context: String): Permission? {
-    val formattedContext = context.toLowerCase().trim()
+    val formattedContext = context.lowercase(Locale.getDefault()).trim()
     require(formattedContext.isNotEmpty()) { "The context is empty." }
     var closest: Permission? = null
     for ((_, next) in permissions) {
@@ -115,7 +115,7 @@ abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: Stri
 
   /** TODO: Document. */
   fun getExplicit(context: String): Permission? {
-    val formattedContext = context.toLowerCase().trim()
+    val formattedContext = context.lowercase(Locale.getDefault()).trim()
     require(formattedContext.isNotEmpty()) { "The context is empty." }
     return permissions[formattedContext]
   }

@@ -2,6 +2,9 @@
 
 package com.asledgehammer.crafthammer.api.command
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 /**
  * **Command** TODO: Document.
  *
@@ -42,7 +45,7 @@ class Command(val name: String, val args: List<String>) {
         .trim { it <= ' ' }
         .split(" ")
         .toTypedArray()[0]
-        .toLowerCase()
+        .lowercase(Locale.getDefault())
       val args = parseArgs(string)
       return Command(command, args)
     }

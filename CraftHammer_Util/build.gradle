@@ -17,12 +17,10 @@ repositories {
     mavenLocal()
 }
 
-jar {
-//    configurations.shade.each { dep ->
-//        from(project.zipTree(dep)) {
-//            exclude 'META-INF', 'META-INF/**', '**/about.html', '*/about.html', 'about.html'
-//        }
-//    }
+dependencies {
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
+    implementation 'org.joml:joml:1.10.3'
+    implementation 'org.yaml:snakeyaml:1.29'
 }
 
 publishing {
@@ -32,3 +30,12 @@ publishing {
         }
     }
 }
+
+task binClass(type: Copy) {
+    mustRunAfter(build)
+    doFirst{ mkdir('../bin/class') }
+    from "./build/classes/java/main", "./build/classes/kotlin/main", "./build/resources/"
+    into "../bin/class"
+    exclude '**/META-INF'
+}
+build.finalizedBy(binClass)

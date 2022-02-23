@@ -8,19 +8,23 @@ plugins {
 group 'com.asledgehammer.crafthammer'
 version project.CRAFTHAMMER_VERSION
 
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
 repositories {
     mavenCentral()
     mavenLocal()
 }
 
 dependencies {
+    implementation 'org.yaml:snakeyaml:1.29'
     implementation project(':CraftHammer_Util')
     implementation project(':CraftHammer_API')
     implementation "com.asledgehammer.crafthammer:CraftNail:${project.CRAFTHAMMER_VERSION}"
-    implementation 'org.yaml:snakeyaml:1.9'
 }
 
 shadowJar {
+    doFirst { println("Hello World!") }
     archiveBaseName.set('CraftHammer')
     archiveVersion.set(project.CRAFTHAMMER_VERSION.toString())
     archiveClassifier.set('')
@@ -33,3 +37,20 @@ publishing {
         }
     }
 }
+
+task binClass(type: Copy) {
+    mustRunAfter(build)
+    doFirst{ mkdir('../bin/class') }
+    from "./build/classes/java/main", "./build/classes/kotlin/main", "./build/resources/"
+    into "../bin/class"
+    exclude '**/META-INF'
+}
+build.finalizedBy(binClass)
+
+task binJar(type: Copy) {
+    mustRunAfter(jar)
+    doFirst{ mkdir('../bin/jar') }
+    from "./build/libs"
+    into "../bin/jar"
+}
+shadowJar.finalizedBy(binJar)

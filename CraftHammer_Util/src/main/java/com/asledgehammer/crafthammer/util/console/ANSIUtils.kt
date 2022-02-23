@@ -5,6 +5,8 @@ package com.asledgehammer.crafthammer.util.console
 import com.asledgehammer.crafthammer.util.color.Color
 import com.asledgehammer.crafthammer.util.math.MathUtils
 import org.fusesource.jansi.AnsiConsole
+import java.util.*
+import kotlin.collections.HashMap
 
 
 /**
@@ -97,7 +99,7 @@ object ANSIUtils {
       ansiBGMap[Color(r.toUByte(), g.toUByte(), b.toUByte())] = code
     }
 
-    val windows = System.getProperty("os.name").toLowerCase().startsWith("win")
+    val windows = System.getProperty("os.name").lowercase(Locale.getDefault()).startsWith("win")
     if (windows) {
       AnsiConsole.systemInstall()
     }

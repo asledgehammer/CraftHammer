@@ -1,8 +1,9 @@
-package com.asledgehammer.sledgehammer.api.entity.living
+package com.asledgehammer.crafthammer.api.entity
 
 import com.asledgehammer.crafthammer.api.command.Messagable
 import com.asledgehammer.sledgehammer.api.network.Connection
 import org.joml.Vector3f
+import java.util.*
 
 /**
  * **Player** TODO: Document.
@@ -36,7 +37,7 @@ interface Player : Messagable {
 
     companion object {
       fun get(name: String): AccessLevel {
-        val nameUpper = name.toUpperCase().trim()
+        val nameUpper = name.uppercase(Locale.getDefault()).trim()
         for (next in values()) if (nameUpper.equals(next.name)) return next
         return NONE
       }

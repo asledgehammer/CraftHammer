@@ -53,7 +53,7 @@ class PermissionGroup(id: UUID = UUID.randomUUID(), name: String) : PermissionCo
   }
 
   override fun getAllSub(context: String): List<Permission> {
-    val superContext = context.toLowerCase().trim()
+    val superContext = context.lowercase(Locale.getDefault()).trim()
     val list = ArrayList<Permission>()
     if (parent != null) list.addAll(parent!!.getAllSub(superContext))
     for ((_, permission) in permissions) {

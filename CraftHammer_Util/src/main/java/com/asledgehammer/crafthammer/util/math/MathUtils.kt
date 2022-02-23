@@ -44,7 +44,7 @@ object MathUtils {
   @JvmStatic
   @JvmOverloads
   fun verifyValueRange(min: Int, max: Int, value: Int, name: String = "param") {
-    require(value in (min + 1) until max) {
+    require(value > min - 1 && value < max + 1) {
       "The value '${name}' is out of range. (min: $min, max: $max, given: $value)"
     }
   }

@@ -2,6 +2,8 @@
 
 package com.asledgehammer.crafthammer.api.permission
 
+import java.util.*
+
 /**
  * **Permission** TODO: Document.
  *
@@ -49,7 +51,7 @@ class Permission(val context: String, var flag: Boolean) {
       require(split.size == 2) {
         "The raw string contains more than one value separator ($VALUE_SEPARATOR): $raw"
       }
-      return Permission(split[0].toLowerCase().trim(), split[1].trim().toBoolean())
+      return Permission(split[0].lowercase(Locale.getDefault()).trim(), split[1].trim().toBoolean())
     }
   }
 }

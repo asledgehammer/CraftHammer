@@ -7,27 +7,54 @@ plugins {
 project.ext.set('CRAFTHAMMER_VERSION', '1.0.5_BETA_2')
 project.ext.set('PZ_VERSION', '41.65')
 
-subprojects {
+allprojects {
 
     apply plugin: 'java'
-    sourceCompatibility = 1.15
-    targetCompatibility = 1.15
+    apply plugin: 'kotlin'
+    apply plugin: 'org.jetbrains.kotlin.jvm'
 
     compileJava.options.encoding = 'UTF-8'
     jar.duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-    dependencies {
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(15)
+        }
+    }
 
-//        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(15))
+        }
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+        }
+    }
+}
+
+subprojects {
+
+    apply plugin: 'java'
+
+    dependencies {
 
         // PZ Libraries
         compileOnly fileTree('../lib') { include '*.jar' }
 
         compileOnly 'org.fusesource.jansi:jansi:2.4.0'
         compileOnly 'org.joml:joml:1.10.3'
-        compileOnly 'org.yaml:snakeyaml:1.9'
+        compileOnly 'org.yaml:snakeyaml:1.29'
     }
 }
+
+//task delBin() {
+//    delete "bin/class", "bin/jar"
+//}
+
+//clean.finalizedBy(delBin)
 
 repositories {
     mavenCentral()

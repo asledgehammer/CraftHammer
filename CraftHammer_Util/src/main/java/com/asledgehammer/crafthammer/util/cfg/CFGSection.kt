@@ -37,7 +37,7 @@ open class CFGSection internal constructor(val name: String) {
         }
 
     /**
-     * Returns a immutable collection of both children keys and field keys in the section.
+     * Returns an immutable collection of both children keys and field keys in the section.
      */
     val allKeys: List<String>
         get() {
@@ -47,13 +47,13 @@ open class CFGSection internal constructor(val name: String) {
         }
 
     /**
-     * Returns a immutable collection of children keys in the section.
+     * Returns an immutable collection of children keys in the section.
      */
     val childKeys: List<String>
         get() = Collections.unmodifiableList(ArrayList(children.keys))
 
     /**
-     * Returns a immutable collection of field keys in the section.
+     * Returns an immutable collection of field keys in the section.
      */
     val fieldKeys: List<String>
         get() = Collections.unmodifiableList(ArrayList(fields.keys))
@@ -85,7 +85,7 @@ open class CFGSection internal constructor(val name: String) {
         }
         if (query.contains(SEPARATOR)) {
             val split = query.split(SEPARATOR)
-            val childQuery = split[0].toLowerCase().trim()
+            val childQuery = split[0].lowercase(Locale.getDefault()).trim()
             val child = children[childQuery] ?: return false
             val rebuiltQuery = StringBuilder()
             for (index in 1..split.lastIndex) {
@@ -110,7 +110,7 @@ open class CFGSection internal constructor(val name: String) {
         }
         if (query.contains(SEPARATOR)) {
             val split = query.split(SEPARATOR)
-            val childQuery = split[0].toLowerCase().trim()
+            val childQuery = split[0].lowercase(Locale.getDefault()).trim()
             val child = children[childQuery] ?: throw UnresolvedException(childQuery)
             val rebuiltQuery = StringBuilder()
             for (index in 1..split.lastIndex) {
@@ -133,7 +133,7 @@ open class CFGSection internal constructor(val name: String) {
      * @param value The value to set for the query.
      *
      * @throws IllegalArgumentException Thrown if the query is empty.
-     * @throws UnresolvedException Thrown if a sub-section in the query does not exist.
+     * @throws UnresolvedException Thrown if a subsection in the query does not exist.
      */
     fun set(query: String, value: Any?) {
         require(query.isNotEmpty()) {
@@ -141,7 +141,7 @@ open class CFGSection internal constructor(val name: String) {
         }
         if (query.contains(SEPARATOR)) {
             val split = query.split(SEPARATOR)
-            val childQuery = split[0].toLowerCase().trim()
+            val childQuery = split[0].lowercase(Locale.getDefault()).trim()
             val child = children[childQuery] ?: throw UnresolvedException(childQuery)
             val rebuiltQuery = StringBuilder()
             for (index in 1..split.lastIndex) {
@@ -157,7 +157,7 @@ open class CFGSection internal constructor(val name: String) {
      * This is a cleaner solution to isolate discovery-query code from application of values.
      */
     private fun setLocal(query: String, value: Any?) {
-        val lQuery = query.toLowerCase().trim()
+        val lQuery = query.lowercase(Locale.getDefault()).trim()
         if (value is CFGSection) {
             if (isChildOf(value)) throw CyclicException("Cannot set parent as child.")
             children[lQuery] = value
@@ -255,7 +255,7 @@ open class CFGSection internal constructor(val name: String) {
      * @throws IllegalArgumentException Thrown if the query is empty.
      * @throws UnresolvedException Thrown if the query fails to resolve a value.
      * @throws ClassCastException Thrown if the resolved value is not a list.
-     * @throws NumberFormatException Thrown if the resolved list contains a value that is not a integer.
+     * @throws NumberFormatException Thrown if the resolved list contains a value that is not an integer.
      */
     fun getIntList(query: String): List<Int> {
         val rawList = getList(query)
@@ -405,7 +405,7 @@ open class CFGSection internal constructor(val name: String) {
     /**
      * @param query The query to test.
      *
-     * @return Returns true if the query resolves and the resolved value is a integer value.
+     * @return Returns true if the query resolves and the resolved value is an integer value.
      *
      * @throws IllegalArgumentException Thrown if the query is empty.
      */

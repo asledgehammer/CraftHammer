@@ -2,11 +2,10 @@
 
 package com.asledgehammer.crafthammer
 
+import com.asledgehammer.crafthammer.api.entity.Player
 import com.asledgehammer.crafthammer.util.cfg.YamlFile
 import com.asledgehammer.crafthammer.util.component.TextComponent
 import com.asledgehammer.craftnail.CraftNail
-import com.asledgehammer.craftnail.CraftNail.cfg
-import com.asledgehammer.sledgehammer.api.entity.living.Player
 
 /**
  * **Craftboid** is the base class for all Craftboid operations. All handling of native code for PZ goes through here.
