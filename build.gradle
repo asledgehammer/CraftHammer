@@ -4,8 +4,8 @@ plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
-project.ext.set('CRAFTHAMMER_VERSION', '1.0.5_BETA_2')
 project.ext.set('PZ_VERSION', '41.68')
+project.ext.set('CRAFTHAMMER_VERSION', project.PZ_VERSION + '__1.0.6_BETA_1')
 
 allprojects {
 
