@@ -17,14 +17,18 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.yaml:snakeyaml:1.29'
+    implementation 'org.yaml:snakeyaml:1.30'
     implementation project(':CraftHammer_Util')
     implementation project(':CraftHammer_API')
-    implementation "com.asledgehammer.crafthammer:CraftNail:${project.CRAFTHAMMER_VERSION}"
+    // PZ Libraries
+    compileOnly fileTree('../lib') {
+        include '*.jar'
+    }
+    implementation project(':CraftNail')
+//    implementation "com.asledgehammer.crafthammer:CraftNail:${project.CRAFTHAMMER_VERSION}"
 }
 
 shadowJar {
-    doFirst { println("Hello World!") }
     archiveBaseName.set('CraftHammer')
     archiveVersion.set(project.CRAFTHAMMER_VERSION.toString())
     archiveClassifier.set('')

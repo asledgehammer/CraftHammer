@@ -1,4 +1,4 @@
-package com.asledgehammer.sledgehammer.api
+package com.asledgehammer.crafthammer.api
 
 import com.asledgehammer.crafthammer.api.command.Messagable
 import com.asledgehammer.crafthammer.api.permission.Permissionable

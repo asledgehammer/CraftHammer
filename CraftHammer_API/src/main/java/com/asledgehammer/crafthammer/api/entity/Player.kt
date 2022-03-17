@@ -1,7 +1,7 @@
 package com.asledgehammer.crafthammer.api.entity
 
 import com.asledgehammer.crafthammer.api.command.Messagable
-import com.asledgehammer.sledgehammer.api.network.Connection
+import com.asledgehammer.crafthammer.api.network.Connection
 import org.joml.Vector3f
 import java.util.*
 
@@ -18,7 +18,7 @@ interface Player : Messagable {
   val connection: Connection
   val isOnline: Boolean
   val isStaff: Boolean
-  fun disconnect(reason: String?)
+  fun disconnect(reason: String? = "Generic")
   fun teleport(location: Vector3f)
   fun teleport(x: Float, y: Float, z: Float)
   fun getLocation(): Vector3f

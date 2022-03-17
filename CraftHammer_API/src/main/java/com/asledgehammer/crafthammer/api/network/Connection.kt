@@ -1,4 +1,4 @@
-package com.asledgehammer.sledgehammer.api.network
+package com.asledgehammer.crafthammer.api.network
 
 /**
  * **Connection** TODO: Document.
@@ -7,7 +7,7 @@ package com.asledgehammer.sledgehammer.api.network
  */
 interface Connection {
   fun getGuid(): Long
-  fun disconnect(reason: String?)
+  fun disconnect(reason: String? = "Generic")
   fun isFullyConnected(): Boolean
   fun sendMessage(name: String, message: String)
 }

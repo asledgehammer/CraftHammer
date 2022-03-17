@@ -21,6 +21,11 @@ dependencies {
     implementation 'org.fusesource.jansi:jansi:2.4.0'
     implementation 'org.joml:joml:1.10.3'
     implementation 'org.yaml:snakeyaml:1.29'
+    // PZ Libraries
+    compileOnly fileTree('../lib') {
+        include '*.jar'
+        exclude "CraftNail_${project.CRAFTHAMMER_VERSION}.jar"
+    }
 }
 
 publishing {
