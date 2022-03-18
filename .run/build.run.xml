@@ -35,15 +35,22 @@
         <list>
           <option value="CraftHammer_Util:build" />
           <option value="CraftHammer_Util:jar" />
+          <option value="CraftHammer_Util:binClass" />
           <option value="CraftHammer_API:build" />
           <option value="CraftHammer_API:jar" />
+          <option value="CraftHammer_Util:binClass" />
           <option value="craftnail:build" />
           <option value="craftnail:jar" />
+          <option value="CraftNail:binClass" />
           <option value="craftnail:publishToMavenLocal" />
           <option value="CraftHammer:build" />
           <option value="CraftHammer:shadowJar" />
+          <option value="CraftHammer:binClass" />
+          <option value="CraftHammer:binJar" />
           <option value="SledgeHammer:build" />
           <option value="SledgeHammer:jar" />
+          <option value="SledgeHammer:binClass" />
+          <option value="SledgeHammer:binJar" />
         </list>
       </option>
       <option name="vmOptions" />
