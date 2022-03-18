@@ -28,11 +28,11 @@ object CraftHammer {
   fun log(list: List<Any?>) = CraftNail.log(list)
 
   @JvmStatic
-  fun log(vararg objects: Any?) = CraftNail.log(objects)
+  fun log(vararg objects: Any?) = CraftNail.log(*objects)
 
   @JvmStatic
   @JvmOverloads
-  fun logError(message: String, throwable: Throwable? = null) = CraftNail.logError(message, throwable)
+  fun logError(message: String, cause: Throwable? = null) = CraftNail.logError(message, cause)
 
   /**
    * TODO: Document.
