@@ -51,6 +51,8 @@
           <option value="SledgeHammer:jar" />
           <option value="SledgeHammer:binClass" />
           <option value="SledgeHammer:binJar" />
+          <option value="SledgeHammer:ExamplePlugin:build" />
+          <option value="SledgeHammer:ExamplePlugin:jar" />
         </list>
       </option>
       <option name="vmOptions" />
