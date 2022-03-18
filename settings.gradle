@@ -1,9 +1,0 @@
-rootProject.name = 'CraftHammer'
-
-include ':CraftNail'   // Private repository for CraftHammer. (Legal reasons)
-include ':CraftHammer' // Public repository for CraftHammer.
-
-include ':CraftHammer_API'
-include ':CraftHammer_Util'
-
-include ':SledgeHammer'
