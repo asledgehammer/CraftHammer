@@ -38,6 +38,10 @@ class CraftEvents : Events {
 
     event.handled = false
 
+    if (DEBUG) {
+      println("dispatch(${event::class.java.simpleName}) THREAD: ${Thread.currentThread()}")
+    }
+
     val clazz = event.javaClass
     val wrappers = sortedEventWrappers[clazz] ?: return
     for (wrapper in wrappers) {
@@ -119,5 +123,9 @@ class CraftEvents : Events {
       }
       eventWrappers.clear()
     }
+  }
+
+  companion object {
+    var DEBUG = false
   }
 }
