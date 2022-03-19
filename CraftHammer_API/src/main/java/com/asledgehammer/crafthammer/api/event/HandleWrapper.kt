@@ -14,13 +14,14 @@ import java.lang.reflect.Modifier
  * @author Jab
  *
  * @param A The type of annotation that stores properties of how to handle.
+ * @param L The type of listener.
  * @param E The type of parameter to pass to the method.
  *
- * @property listener
- * @property annotation
- * @param method
+ * @property listener The listener instance.
+ * @property annotation The annotation instance.
+ * @param method The method to handle.
  */
-abstract class HandleWrapper<A : Annotation, E>(val listener: Listener, val annotation: A, method: Method) {
+abstract class HandleWrapper<A : Annotation,L, E>(val listener: L, val annotation: A, method: Method) {
 
   /** TODO: Document. */
   val timeCreated = System.currentTimeMillis()

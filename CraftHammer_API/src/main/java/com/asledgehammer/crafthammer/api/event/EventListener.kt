@@ -1,8 +1,8 @@
 package com.asledgehammer.crafthammer.api.event
 
 /**
- * **Listener** TODO: Document.
+ * **EventListener** TODO: Document.
  *
  * @author Jab
  */
-interface Listener
+interface EventListener
