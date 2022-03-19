@@ -126,6 +126,6 @@ class CraftEvents : Events {
   }
 
   companion object {
-    var DEBUG = false
+    var DEBUG = true
   }
 }
