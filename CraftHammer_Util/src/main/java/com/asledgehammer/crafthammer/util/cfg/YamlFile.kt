@@ -4,6 +4,11 @@ import org.yaml.snakeyaml.DumperOptions
 import org.yaml.snakeyaml.Yaml
 import java.io.*
 
+/**
+ * **YamlFile** TODO: Document.
+ *
+ * @author Jab
+ */
 class YamlFile(file: File? = null) : CFGFile(file) {
 
     /**

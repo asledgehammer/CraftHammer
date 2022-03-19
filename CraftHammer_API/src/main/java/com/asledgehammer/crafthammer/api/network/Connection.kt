@@ -6,8 +6,19 @@ package com.asledgehammer.crafthammer.api.network
  * @author Jab
  */
 interface Connection {
-  fun getGuid(): Long
-  fun disconnect(reason: String? = "Generic")
-  fun isFullyConnected(): Boolean
+
+  /**
+   * The SteamID if SteamMode is enabled, or the IPAddress if otherwise.
+   */
+  val id: String
+  val ownerId: Long
+  val accesslevel: Byte
+  val accesslevelName: String
+  val username: String
+  val guid: Long
+  val fullyConnected: Boolean
+  val timeConnected: Long
+
   fun sendMessage(name: String, message: String)
+  fun disconnect(reason: String? = "Generic")
 }

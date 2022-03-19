@@ -1,9 +1,16 @@
 package com.asledgehammer.crafthammer.api.event.network
 
-import com.asledgehammer.crafthammer.api.entity.Player
 import com.asledgehammer.crafthammer.api.event.Cancelable
 import com.asledgehammer.crafthammer.api.network.Connection
 
-class PostLoginEvent(connection: Connection, val player: Player) : NetworkEvent(connection), Cancelable {
+/**
+ * **PostLoginEvent** TODO: Document.
+ *
+ * @author Jab
+ */
+class PostLoginEvent(connection: Connection) : NetworkEvent(connection), Cancelable {
   override var cancelled: Boolean = false
+  override fun toString(): String =
+    "PostLoginEvent(async=${async}, timestamp=${timestamp}, handled=${handled}, " +
+            "connection=$connection, cancelled=$cancelled)"
 }

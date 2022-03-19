@@ -5,6 +5,6 @@ package com.asledgehammer.crafthammer.api.permission
  *
  * @author Jab
  */
-interface Permissionable {
+interface PermissionSupported {
   fun hasPermission(permission: String): Boolean
 }

@@ -1,5 +1,10 @@
 import java.lang.reflect.Method
 
+/**
+ * **ReflectionUtils** TODO: Document.
+ *
+ * @author Jab
+ */
 object ReflectionUtils {
 
   fun getAllDeclaredMethods(clazz: Class<*>): List<Method> {

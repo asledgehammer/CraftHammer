@@ -3,7 +3,7 @@
 package com.asledgehammer.crafthammer.api.event
 
 /**
- * **CancelableEvent** TODO: Document.
+ * **Cancelable* TODO: Document.
  *
  * @author Jab
  */

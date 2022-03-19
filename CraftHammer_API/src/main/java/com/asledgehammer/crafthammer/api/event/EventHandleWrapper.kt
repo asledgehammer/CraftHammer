@@ -15,7 +15,7 @@ class EventHandleWrapper(listener: EventListener, annotation: EventHandler, meth
 
   override fun canDispatch(element: Event): Boolean {
     if (annotation.ignoreCancelled) return true
-    return element !is CancelableEvent || !element.cancelled
+    return element !is Cancelable || !element.cancelled
   }
 
   override fun isParameterValid(clazz: Class<*>): Boolean = Event::class.java.isAssignableFrom(clazz)

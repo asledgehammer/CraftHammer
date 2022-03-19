@@ -6,6 +6,11 @@ import java.util.*
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+/**
+ * **MathUtils** TODO: Document.
+ *
+ * @author Jab
+ */
 object MathUtils {
 
   val random = Random()

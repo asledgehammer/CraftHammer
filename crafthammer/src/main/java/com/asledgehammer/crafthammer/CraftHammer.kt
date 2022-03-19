@@ -36,7 +36,7 @@ object CraftHammer : Hammer {
   override fun broadcast(name: String, message: String, filter: ((player: Player) -> Boolean)?) {
     val players = if (filter != null) onlinePlayers.filter(filter) else onlinePlayers
     for (player in players) {
-      if (!player.isOnline) continue
+      if (!player.online) continue
       player.sendMessage(name, message)
     }
   }
@@ -44,7 +44,7 @@ object CraftHammer : Hammer {
   override fun broadcast(name: String, message: TextComponent, filter: ((player: Player) -> Boolean)?) {
     val players = if (filter != null) onlinePlayers.filter(filter) else onlinePlayers
     for (player in players) {
-      if (!player.isOnline) continue
+      if (!player.online) continue
       player.sendMessage(name, message)
     }
   }

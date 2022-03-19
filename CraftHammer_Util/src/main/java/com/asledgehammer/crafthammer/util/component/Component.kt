@@ -4,6 +4,11 @@ package com.asledgehammer.crafthammer.util.component
 
 import java.util.*
 
+/**
+ * **Component** TODO: Document.
+ *
+ * @author Jab
+ */
 open class Component<E : Component<E>> {
 
   /**

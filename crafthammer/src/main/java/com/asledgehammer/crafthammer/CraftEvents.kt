@@ -35,6 +35,9 @@ class CraftEvents : Events {
   }
 
   override fun dispatch(event: Event) {
+
+    event.handled = false
+
     val clazz = event.javaClass
     val wrappers = sortedEventWrappers[clazz] ?: return
     for (wrapper in wrappers) {
@@ -51,6 +54,8 @@ class CraftEvents : Events {
       for (wrapper in eventWrappersToRemove) unregister(wrapper.listener, false)
       sort()
     }
+
+    event.handled = true
   }
 
   override fun reset() {

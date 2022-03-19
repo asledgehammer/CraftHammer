@@ -2,11 +2,11 @@
 
 package com.asledgehammer.crafthammer.api.command
 
-import com.asledgehammer.crafthammer.api.permission.Permissionable
+import com.asledgehammer.crafthammer.api.permission.PermissionSupported
 
 /**
  * **CommandSender** TODO: Document.
  *
  * @author Jab
  */
-interface CommandSender : Messagable, Permissionable
+interface CommandSender : Messagable, PermissionSupported
