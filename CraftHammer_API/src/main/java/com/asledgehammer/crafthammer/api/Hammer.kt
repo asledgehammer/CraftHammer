@@ -3,9 +3,11 @@ package com.asledgehammer.crafthammer.api
 import com.asledgehammer.crafthammer.api.command.Commands
 import com.asledgehammer.crafthammer.api.entity.Player
 import com.asledgehammer.crafthammer.api.event.Events
+import com.asledgehammer.crafthammer.api.event.log.LogListener
 import com.asledgehammer.crafthammer.api.permission.Permissions
 import com.asledgehammer.crafthammer.util.cfg.YamlFile
 import com.asledgehammer.crafthammer.util.component.TextComponent
+import java.util.*
 
 /**
  * **Hammer** TODO: Document.
@@ -15,7 +17,7 @@ import com.asledgehammer.crafthammer.util.component.TextComponent
 interface Hammer : LogSupported {
 
   companion object {
-    lateinit var INSTANCE: Hammer
+    var instance: Hammer? = null
   }
 
   val VERSION: String
@@ -26,6 +28,10 @@ interface Hammer : LogSupported {
   var permissions: Permissions
   val cfg: YamlFile
   val onlinePlayers: Collection<Player>
+
+  fun addLogListener(id: UUID, listener: LogListener)
+  fun removeLogListener(id: UUID, listener: LogListener)
+  fun removeLogListeners(id: UUID)
 
   fun broadcast(name: String = "Server", message: String, filter: ((player: Player) -> Boolean)? = null)
   fun broadcast(name: String = "Server", message: TextComponent, filter: ((player: Player) -> Boolean)? = null)

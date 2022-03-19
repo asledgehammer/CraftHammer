@@ -6,10 +6,12 @@ import com.asledgehammer.crafthammer.api.Hammer
 import com.asledgehammer.crafthammer.api.command.Commands
 import com.asledgehammer.crafthammer.api.entity.Player
 import com.asledgehammer.crafthammer.api.event.Events
+import com.asledgehammer.crafthammer.api.event.log.LogListener
 import com.asledgehammer.crafthammer.api.permission.Permissions
 import com.asledgehammer.crafthammer.util.cfg.YamlFile
 import com.asledgehammer.crafthammer.util.component.TextComponent
 import com.asledgehammer.craftnail.CraftNail
+import java.util.*
 
 /**
  * **CraftHammer** is the base class for all Craftboid operations. All
@@ -55,9 +57,13 @@ object CraftHammer : Hammer {
 
   override fun logError(message: String, cause: Throwable?) = CraftNail.logError(message, cause)
 
+  override fun addLogListener(id: UUID, listener: LogListener) = CraftNail.addLogListener(id, listener)
+  override fun removeLogListener(id: UUID, listener: LogListener) = CraftNail.removeLogListener(id, listener)
+  override fun removeLogListeners(id: UUID) = CraftNail.removeLogListeners(id)
+
   override fun isPvpEnabled(): Boolean = CraftNail.isPvpEnabled()
 
   init {
-    Hammer.INSTANCE = this
+    Hammer.instance = this
   }
 }
