@@ -20,17 +20,17 @@ class CraftEvents : Events {
   private val eventWrappersToRemove = ArrayList<EventHandleWrapper>()
 
   override fun register(id: UUID, listener: EventListener) {
-    wrappers.computeIfAbsent(id) { CraftWrapper() }.register(listener)
+    wrappers.computeIfAbsent(id) { CraftWrapper(id) }.register(listener)
     sort()
   }
 
-  override fun unregister(id: UUID) {
+  override fun unregisterAll(id: UUID) {
     val wrapper = wrappers.remove(id) ?: return
     wrapper.reset()
   }
 
-  override fun unregister(listener: EventListener, sort: Boolean) {
-    for ((_, wrapper) in wrappers) wrapper.unregister(listener)
+  override fun unregister(id: UUID, listener: EventListener, sort: Boolean) {
+    wrappers[id]?.unregister(listener)
     if (sort) sort()
   }
 
@@ -55,7 +55,7 @@ class CraftEvents : Events {
       }
     }
     if (eventWrappersToRemove.isNotEmpty()) {
-      for (wrapper in eventWrappersToRemove) unregister(wrapper.listener, false)
+      for (wrapper in eventWrappersToRemove) unregister(wrapper.id, wrapper.listener, false)
       sort()
     }
 
@@ -78,7 +78,7 @@ class CraftEvents : Events {
     for ((_, list) in sortedEventWrappers) list.sortByDescending { it.annotation.priority }
   }
 
-  private class CraftWrapper : Events.Wrapper {
+  private class CraftWrapper(val id: UUID) : Events.Wrapper {
 
     override val eventWrappers = HashMap<Class<out Event?>, ArrayList<EventHandleWrapper>>()
 
@@ -90,7 +90,7 @@ class CraftEvents : Events {
         val eventHandler = method.getAnnotation(EventHandler::class.java)
         if (eventHandler != null) {
           val clazz = method.parameters[0].type as Class<out Event?>
-          val wrapper = EventHandleWrapper(listener, eventHandler, method)
+          val wrapper = EventHandleWrapper(id, listener, eventHandler, method)
           eventWrappers.computeIfAbsent(clazz) { ArrayList() }.add(wrapper)
           continue
         }

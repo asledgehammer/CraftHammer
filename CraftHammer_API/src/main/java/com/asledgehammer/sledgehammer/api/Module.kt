@@ -1,6 +1,7 @@
 package com.asledgehammer.sledgehammer.api
 
 import com.asledgehammer.crafthammer.api.LogSupported
+import com.asledgehammer.crafthammer.api.event.EventListener
 import com.asledgehammer.crafthammer.api.event.log.LogListener
 import com.asledgehammer.crafthammer.util.cfg.CFGSection
 import java.io.File
@@ -23,6 +24,9 @@ interface Module: LogSupported {
   fun saveResource(path: String, overwrite: Boolean = false)
   fun saveResourceAs(path: String, filePath: String, overwrite: Boolean = false)
   fun saveResourceAs(path: String, filePath: File, overwrite: Boolean = false)
+
+  fun addEventListener(listener: EventListener)
+  fun removeEventListener(listener: EventListener)
 
   fun addLogListener(listener: LogListener)
   fun removeLogListener(listener: LogListener)

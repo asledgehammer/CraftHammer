@@ -1,6 +1,6 @@
 package com.asledgehammer.crafthammer.api.event
 
-import java.util.*
+import java.util.UUID;
 
 /**
  * **Events** TODO: Document.
@@ -9,8 +9,8 @@ import java.util.*
  */
 interface Events {
   fun register(id: UUID, listener: EventListener)
-  fun unregister(id: UUID)
-  fun unregister(listener: EventListener, sort: Boolean = true)
+  fun unregister(id: UUID, listener: EventListener, sort: Boolean = true)
+  fun unregisterAll(id: UUID)
   fun dispatch(event: Event)
   fun reset()
 

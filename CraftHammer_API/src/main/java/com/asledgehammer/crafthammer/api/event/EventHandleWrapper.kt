@@ -1,6 +1,7 @@
 package com.asledgehammer.crafthammer.api.event
 
 import java.lang.reflect.Method
+import java.util.*
 
 /**
  * **EventHandleWrapper** TODO: Document.
@@ -10,7 +11,7 @@ import java.lang.reflect.Method
  * @param annotation The information for handling the event.
  * @param method The method handler to invoke.
  */
-class EventHandleWrapper(listener: EventListener, annotation: EventHandler, method: Method) :
+class EventHandleWrapper(val id: UUID, listener: EventListener, annotation: EventHandler, method: Method) :
   HandleWrapper<EventHandler, EventListener, Event>(listener, annotation, method) {
 
   override fun canDispatch(element: Event): Boolean {
