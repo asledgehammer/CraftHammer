@@ -4,7 +4,6 @@ gradlew.bat
 .idea/
 build/
 craftnail/
-SledgeHammer/
 gradle/
 lib/
 bin/
