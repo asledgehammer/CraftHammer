@@ -1,21 +1,14 @@
 package com.asledgehammer.crafthammer.api.permission
 
-import java.util.*
-
 /**
  * **PermissionUser** TODO: Document.
  *
  * @author Jab
- *
- * @param id
  * @param name
  * @property group
  */
-class PermissionUser(id: UUID = UUID.randomUUID(), name: String, var group: PermissionGroup? = null) :
-  PermissionCollection(id, name) {
-
-  /** TODO: Document. */
-  val groupId: UUID? get() = group?.id
+class PermissionUser(name: String, var group: PermissionGroup? = null) :
+  PermissionCollection(name) {
 
   override fun has(context: String): Boolean {
     val permissionGroup: Permission? = group?.getClosest(context)
@@ -29,5 +22,5 @@ class PermissionUser(id: UUID = UUID.randomUUID(), name: String, var group: Perm
     return false
   }
 
-  override fun toString(): String = "PermissionUser(name=$name, id=$id)"
+  override fun toString(): String = "PermissionUser(name=$name)"
 }

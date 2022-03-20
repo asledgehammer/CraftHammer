@@ -16,17 +16,17 @@ class CraftCommands : Commands {
   private val sortedCommandWrappers = HashMap<String, ArrayList<CommandHandleWrapper>>()
   private val commandWrappersToRemove = ArrayList<CommandHandleWrapper>()
 
-  override fun register(id: UUID, listener: CommandListener) {
+  override fun add(id: UUID, listener: CommandListener) {
     wrappers.computeIfAbsent(id) { CraftWrapper(id) }.register(listener)
     sort()
   }
 
-  override fun unregisterAll(id: UUID) {
+  override fun removeAll(id: UUID) {
     val wrapper = wrappers.remove(id) ?: return
     wrapper.reset()
   }
 
-  override fun unregister(id: UUID, listener: CommandListener, sort: Boolean) {
+  override fun remove(id: UUID, listener: CommandListener, sort: Boolean) {
     wrappers[id]?.unregister(listener)
     if (sort) sort()
   }
@@ -50,7 +50,7 @@ class CraftCommands : Commands {
     }
     // Remove any disabled wrappers.
     if (commandWrappersToRemove.isNotEmpty()) {
-      for (wrapper in commandWrappersToRemove) unregister(wrapper.id, wrapper.listener, false)
+      for (wrapper in commandWrappersToRemove) remove(wrapper.id, wrapper.listener, false)
       sort()
     }
     return execution

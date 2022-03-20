@@ -9,18 +9,11 @@ import java.util.*
  *
  * @author Jab
  */
-class PermissionGroup(id: UUID = UUID.randomUUID(), name: String) : PermissionCollection(id, name) {
+class PermissionGroup(name: String) : PermissionCollection(name) {
 
-  /** TODO: Document. */
-  val members: List<PermissionUser> get() = users.values.toList()
-
-  /** TODO: Document. */
-  val parentId: UUID? get() = parent?.id
-
-  /** TODO: Document. */
   var parent: PermissionGroup? = null
-
-  private val users = HashMap<UUID, PermissionUser>()
+  val members: List<PermissionUser> get() = _members.values.toList()
+  private val _members = HashMap<String, PermissionUser>()
 
   override fun has(context: String): Boolean {
     var returned = false
@@ -67,9 +60,9 @@ class PermissionGroup(id: UUID = UUID.randomUUID(), name: String) : PermissionCo
     return list
   }
 
-  override fun equals(other: Any?): Boolean = other is PermissionGroup && other.id == id
-  override fun hashCode(): Int = 31 * id.hashCode() + name.hashCode()
-  override fun toString(): String = "PermissionGroup(name=$name, id=$id)"
+  override fun equals(other: Any?): Boolean = other is PermissionGroup && other.name.equals(this.name, true)
+  override fun hashCode(): Int = 31 * name.hashCode()
+  override fun toString(): String = "PermissionGroup(name=$name)"
 
   /** TODO: Document. */
   val allPermissions: List<Permission>
@@ -93,20 +86,20 @@ class PermissionGroup(id: UUID = UUID.randomUUID(), name: String) : PermissionCo
   fun isChildOf(other: PermissionGroup): Boolean = parent != null && (parent == other || parent!!.isChildOf(other))
 
   /** TODO: Document. */
-  fun hasMember(member: PermissionUser): Boolean = users.containsKey(member.id)
+  fun hasMember(member: PermissionUser): Boolean = _members.containsKey(member.name.lowercase())
 
   /** TODO: Document. */
   fun addMember(user: PermissionUser) {
-    users[user.id] = user
+    _members[user.name.lowercase()] = user
     user.group = this
   }
 
   /** TODO: Document. */
   fun removeMember(user: PermissionUser) {
-    users.remove(user.groupId)
+    _members.remove(user.name.lowercase())
     user.group = null
   }
 
   /** TODO: Document. */
-  fun hasMembers(): Boolean = users.isNotEmpty()
+  fun hasMembers(): Boolean = _members.isNotEmpty()
 }

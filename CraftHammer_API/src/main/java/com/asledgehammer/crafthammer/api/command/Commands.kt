@@ -8,9 +8,9 @@ import java.util.*
  * @author Jab
  */
 interface Commands {
-  fun register(id: UUID, listener: CommandListener)
-  fun unregisterAll(id: UUID)
-  fun unregister(id: UUID, listener: CommandListener, sort: Boolean = true)
+  fun add(id: UUID, listener: CommandListener)
+  fun removeAll(id: UUID)
+  fun remove(id: UUID, listener: CommandListener, sort: Boolean = true)
   fun dispatch(command: Command, commander: CommandSender): CommandExecution
   fun reset()
 

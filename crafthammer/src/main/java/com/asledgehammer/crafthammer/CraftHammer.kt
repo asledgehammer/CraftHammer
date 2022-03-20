@@ -30,13 +30,9 @@ object CraftHammer : Hammer {
   override var commands: Commands = CraftCommands()
   override var permissions: Permissions = CraftPermissions()
 
+  override val cfg: YamlFile get() = CraftNail.cfg
   override val console: Console = CraftConsole()
-
-  override val cfg: YamlFile
-    get() = CraftNail.cfg
-
-  override val onlinePlayers: Collection<Player>
-    get() = CraftNail.onlinePlayers
+  override val onlinePlayers: Collection<Player> get() = CraftNail.onlinePlayers
 
   override fun broadcast(name: String, message: String, filter: ((player: Player) -> Boolean)?) {
     val players = if (filter != null) onlinePlayers.filter(filter) else onlinePlayers
@@ -55,15 +51,11 @@ object CraftHammer : Hammer {
   }
 
   override fun log(list: List<Any?>) = CraftNail.log(list)
-
   override fun log(vararg objects: Any?) = CraftNail.log(*objects)
-
   override fun logError(message: String, cause: Throwable?) = CraftNail.logError(message, cause)
-
   override fun addLogListener(id: UUID, listener: LogListener) = CraftNail.addLogListener(id, listener)
   override fun removeLogListener(id: UUID, listener: LogListener) = CraftNail.removeLogListener(id, listener)
   override fun removeLogListeners(id: UUID) = CraftNail.removeLogListeners(id)
-
   override fun isPvpEnabled(): Boolean = CraftNail.isPvpEnabled()
 
   init {

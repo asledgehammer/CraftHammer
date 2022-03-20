@@ -1,10 +1,11 @@
 package com.asledgehammer.crafthammer.api.permission
 
 /**
- * **Permissionable** TODO: Document.
+ * **PermissionSupported** TODO: Document.
  *
  * @author Jab
  */
 interface PermissionSupported {
-  fun hasPermission(permission: String): Boolean
+  fun hasPermission(context: String): Boolean
+  fun setPermission(context: String, flag: Boolean)
 }

@@ -1,7 +1,6 @@
 package com.asledgehammer.crafthammer.api.permission
 
 import java.io.File
-import java.util.*
 
 /**
  * **Permissions** TODO: Document.
@@ -10,31 +9,20 @@ import java.util.*
  */
 interface Permissions {
 
-  fun loadYAML(file: File)
+  val defaultGroup: PermissionGroup
 
-  fun saveYAML(file: File)
+  fun load()
+  fun save()
 
-  fun addGroup(group: PermissionGroup)
-
-  fun getGroup(id: UUID): PermissionGroup
-
-  fun getGroup(name: String): PermissionGroup
-
+  fun createGroup(name: String): PermissionGroup
   fun removeGroup(group: PermissionGroup)
-
-  fun removeGroup(id: UUID)
-
   fun removeGroup(name: String)
+  fun getGroup(name: String): PermissionGroup
+  fun hasGroup(username: String): Boolean
 
-  fun addUser(user: PermissionUser)
-
-  fun getUser(id: UUID): PermissionUser
-
-  fun getUser(name: String): PermissionUser
-
+  fun createUser(name: String): PermissionUser
   fun removeUser(user: PermissionUser)
-
-  fun removeUser(id: UUID)
-
   fun removeUser(name: String)
+  fun getUser(name: String): PermissionUser
+  fun hasUser(name: String): Boolean
 }

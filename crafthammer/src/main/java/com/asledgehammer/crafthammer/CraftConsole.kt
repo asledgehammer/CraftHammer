@@ -4,7 +4,7 @@ import com.asledgehammer.crafthammer.api.Console
 import com.asledgehammer.crafthammer.util.component.TextComponent
 
 class CraftConsole : Console {
-  
+
   override fun sendMessage(name: String?, message: String) {
     if (name != null) println("$name: $message")
     else println(message)
@@ -15,5 +15,6 @@ class CraftConsole : Console {
     else println(message.format((TextComponent.Format.CONSOLE)))
   }
 
-  override fun hasPermission(permission: String): Boolean = true
+  override fun hasPermission(context: String): Boolean = true
+  override fun setPermission(context: String, flag: Boolean) {}
 }

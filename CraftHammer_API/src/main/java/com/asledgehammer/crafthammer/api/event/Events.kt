@@ -8,9 +8,9 @@ import java.util.UUID;
  * @author Jab
  */
 interface Events {
-  fun register(id: UUID, listener: EventListener)
-  fun unregister(id: UUID, listener: EventListener, sort: Boolean = true)
-  fun unregisterAll(id: UUID)
+  fun add(id: UUID, listener: EventListener)
+  fun remove(id: UUID, listener: EventListener, sort: Boolean = true)
+  fun removeAll(id: UUID)
   fun dispatch(event: Event)
   fun reset()
 

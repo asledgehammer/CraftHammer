@@ -8,16 +8,14 @@ import java.util.*
  * **PermissionCollection** TODO: Document.
  *
  * @author Jab
- *
- * @property id
  * @param name
  */
-abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: String) {
+abstract class PermissionCollection(name: String) {
 
   var permissions = HashMap<String, Permission>()
   val name: String = name.lowercase(Locale.getDefault()).trim()
 
-  override fun toString(): String = "PermissionCollection(name=$name, id=$id)"
+  override fun toString(): String = "PermissionCollection(name=$name)"
 
   /** TODO: Document. */
   fun add(permission: Permission) {
@@ -31,7 +29,9 @@ abstract class PermissionCollection(val id: UUID = UUID.randomUUID(), name: Stri
   }
 
   /** TODO: Document. */
-  fun get(context: String): Permission? = getExplicit(context) ?: getClosest(context)
+  fun get(context: String): Permission =
+    getExplicit(context) ?: getClosest(context)
+    ?: throw java.lang.NullPointerException("No permission defined for context: $context")
 
   /** TODO: Document. */
   fun set(context: String, flag: Boolean): Permission {
