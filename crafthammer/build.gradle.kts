@@ -23,6 +23,7 @@ dependencies {
     implementation("org.yaml:snakeyaml:1.30")
     implementation(project(":CraftHammer_Util"))
     implementation(project(":CraftHammer_API"))
+    implementation(project(":LangPack:Core"))
     // PZ Libraries
     compileOnly(fileTree("../lib") {
         include("*.jar")

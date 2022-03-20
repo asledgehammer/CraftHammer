@@ -36,6 +36,12 @@
           <option value="CraftHammer_Util:build" />
           <option value="CraftHammer_Util:jar" />
           <option value="CraftHammer_Util:binClass" />
+          <option value="LangPack:Core:build" />
+          <option value="LangPack:Core:jar" />
+          <option value="LangPack:Core:binClass" />
+          <option value="LangPack:CraftHammer:build" />
+          <option value="LangPack:CraftHammer:jar" />
+          <option value="LangPack:CraftHammer:binClass" />
           <option value="CraftHammer_API:build" />
           <option value="CraftHammer_API:jar" />
           <option value="CraftHammer_Util:binClass" />
