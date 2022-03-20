@@ -1,5 +1,6 @@
 package com.asledgehammer.crafthammer.api
 
+import com.asledgehammer.crafthammer.api.command.CommandSender
 import com.asledgehammer.crafthammer.api.command.Messagable
 import com.asledgehammer.crafthammer.api.permission.PermissionSupported
 
@@ -8,4 +9,4 @@ import com.asledgehammer.crafthammer.api.permission.PermissionSupported
  *
  * @author Jab
  */
-interface Console : Messagable, PermissionSupported
+interface Console : Messagable, PermissionSupported, CommandSender

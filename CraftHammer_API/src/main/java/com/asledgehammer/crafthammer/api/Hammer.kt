@@ -20,6 +20,8 @@ interface Hammer : LogSupported {
     var instance: Hammer? = null
   }
 
+  val console: Console
+
   val VERSION: String
   val BETA_VERSION: String
   val IS_BETA: Boolean

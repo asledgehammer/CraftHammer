@@ -1,5 +1,6 @@
 package com.asledgehammer.crafthammer.api.entity
 
+import com.asledgehammer.crafthammer.api.command.CommandSender
 import com.asledgehammer.crafthammer.api.command.Messagable
 import com.asledgehammer.crafthammer.api.network.Connection
 import org.joml.Vector3f
@@ -9,7 +10,7 @@ import org.joml.Vector3f
  *
  * @author Jab
  */
-interface Player : Character, Messagable {
+interface Player : Character, Messagable, CommandSender {
 
   val username: String
   val displayName: String

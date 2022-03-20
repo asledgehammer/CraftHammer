@@ -2,6 +2,7 @@
 
 package com.asledgehammer.crafthammer
 
+import com.asledgehammer.crafthammer.api.Console
 import com.asledgehammer.crafthammer.api.Hammer
 import com.asledgehammer.crafthammer.api.command.Commands
 import com.asledgehammer.crafthammer.api.entity.Player
@@ -28,6 +29,8 @@ object CraftHammer : Hammer {
   override var events: Events = CraftEvents()
   override var commands: Commands = CraftCommands()
   override var permissions: Permissions = CraftPermissions()
+
+  override val console: Console = CraftConsole()
 
   override val cfg: YamlFile
     get() = CraftNail.cfg
