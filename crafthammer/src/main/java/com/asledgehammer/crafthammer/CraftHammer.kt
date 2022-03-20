@@ -12,6 +12,7 @@ import com.asledgehammer.crafthammer.api.permission.Permissions
 import com.asledgehammer.crafthammer.util.cfg.YamlFile
 import com.asledgehammer.crafthammer.util.component.TextComponent
 import com.asledgehammer.craftnail.CraftNail
+import com.asledgehammer.langpack.core.LangPack
 import java.util.*
 
 /**
@@ -25,6 +26,8 @@ object CraftHammer : Hammer {
   override val VERSION = CraftNail.VERSION
   override val BETA_VERSION = CraftNail.BETA_VERSION
   override val IS_BETA = CraftNail.IS_BETA
+
+  override val lang: LangPack = CraftNail.lang
 
   override var events: Events = CraftEvents()
   override var commands: Commands = CraftCommands()

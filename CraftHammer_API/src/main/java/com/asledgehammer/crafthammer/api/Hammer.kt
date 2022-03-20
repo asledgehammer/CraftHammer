@@ -7,6 +7,7 @@ import com.asledgehammer.crafthammer.api.event.log.LogListener
 import com.asledgehammer.crafthammer.api.permission.Permissions
 import com.asledgehammer.crafthammer.util.cfg.YamlFile
 import com.asledgehammer.crafthammer.util.component.TextComponent
+import com.asledgehammer.langpack.core.LangPack
 import java.util.*
 
 /**
@@ -19,6 +20,8 @@ interface Hammer : LogSupported {
   companion object {
     var instance: Hammer? = null
   }
+
+  val lang: LangPack
 
   val console: Console
 

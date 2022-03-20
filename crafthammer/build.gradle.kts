@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":CraftHammer_Util"))
     implementation(project(":CraftHammer_API"))
     implementation(project(":LangPack:Core"))
+    implementation(project(":LangPack:CraftHammer"))
     // PZ Libraries
     compileOnly(fileTree("../lib") {
         include("*.jar")

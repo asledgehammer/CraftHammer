@@ -7,7 +7,7 @@ apply(plugin = "java")
 
 val VERSION = "${findProperty("LANGPACK_CRAFTHAMMER_VERSION")!!}"
 
-group = "com.asledgehammer.crafthammer"
+group = "com.asledgehammer.crafthammer.langpack"
 version = VERSION
 
 repositories {
@@ -16,7 +16,9 @@ repositories {
 }
 
 dependencies {
-  implementation(project(":CraftHammer_Util"))
+  compileOnly(project(":CraftHammer_Util"))
+  compileOnly(project(":CraftHammer_API"))
+  compileOnly(project(":LangPack:Core"))
 }
 
 tasks.register<Copy>("binClass") {
