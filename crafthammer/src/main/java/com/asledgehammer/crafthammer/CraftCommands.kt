@@ -17,17 +17,17 @@ class CraftCommands : Commands {
   private val commandWrappersToRemove = ArrayList<CommandHandleWrapper>()
 
   override fun register(id: UUID, listener: CommandListener) {
-    wrappers.computeIfAbsent(id) { CraftWrapper() }.register(listener)
+    wrappers.computeIfAbsent(id) { CraftWrapper(id) }.register(listener)
     sort()
   }
 
-  override fun unregister(id: UUID) {
+  override fun unregisterAll(id: UUID) {
     val wrapper = wrappers.remove(id) ?: return
     wrapper.reset()
   }
 
-  override fun unregister(listener: CommandListener, sort: Boolean) {
-    for ((_, wrapper) in wrappers) wrapper.unregister(listener)
+  override fun unregister(id: UUID, listener: CommandListener, sort: Boolean) {
+    wrappers[id]?.unregister(listener)
     if (sort) sort()
   }
 
@@ -39,7 +39,7 @@ class CraftCommands : Commands {
     response.found = true
     for (wrapper in wrappers) {
       try {
-        wrapper.dispatch(execution)
+        if (wrapper.canDispatch(execution)) wrapper.dispatch(execution)
         if (response.denied) break
       } catch (throwable: Throwable) {
         CraftHammer.logError("Failed to execute listener: ${wrapper.javaClass.simpleName}. Disabling.")
@@ -50,7 +50,7 @@ class CraftCommands : Commands {
     }
     // Remove any disabled wrappers.
     if (commandWrappersToRemove.isNotEmpty()) {
-      for (wrapper in commandWrappersToRemove) unregister(wrapper.listener, false)
+      for (wrapper in commandWrappersToRemove) unregister(wrapper.id, wrapper.listener, false)
       sort()
     }
     return execution
@@ -72,7 +72,7 @@ class CraftCommands : Commands {
     }
   }
 
-  private class CraftWrapper : Commands.Wrapper {
+  private class CraftWrapper(val id: UUID) : Commands.Wrapper {
 
     override val commandWrappers = HashMap<String, ArrayList<CommandHandleWrapper>>()
 
@@ -82,7 +82,7 @@ class CraftCommands : Commands {
       for (method in methods) {
         val commandHandler = method.getAnnotation(CommandHandler::class.java)
         if (commandHandler != null) {
-          val wrapper = CommandHandleWrapper(listener, commandHandler, method)
+          val wrapper = CommandHandleWrapper(id, listener, commandHandler, method)
           for (command in commandHandler.commands) {
             val key = command.lowercase(Locale.getDefault()).trim()
             commandWrappers.computeIfAbsent(key) { ArrayList() }.add(wrapper)

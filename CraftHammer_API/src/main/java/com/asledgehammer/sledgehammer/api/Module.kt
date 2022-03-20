@@ -1,13 +1,14 @@
 package com.asledgehammer.sledgehammer.api
 
 import com.asledgehammer.crafthammer.api.LogSupported
+import com.asledgehammer.crafthammer.api.command.CommandListener
 import com.asledgehammer.crafthammer.api.event.EventListener
 import com.asledgehammer.crafthammer.api.event.log.LogListener
 import com.asledgehammer.crafthammer.util.cfg.CFGSection
 import java.io.File
 import java.util.*
 
-interface Module: LogSupported {
+interface Module: LogSupported, EventListener, CommandListener {
 
   val id: UUID
   val directory: File
@@ -27,6 +28,9 @@ interface Module: LogSupported {
 
   fun addEventListener(listener: EventListener)
   fun removeEventListener(listener: EventListener)
+
+  fun addCommandListener(listener: CommandListener)
+  fun removeCommandListener(listener: CommandListener)
 
   fun addLogListener(listener: LogListener)
   fun removeLogListener(listener: LogListener)

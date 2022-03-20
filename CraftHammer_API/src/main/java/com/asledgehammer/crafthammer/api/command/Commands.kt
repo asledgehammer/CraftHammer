@@ -9,8 +9,8 @@ import java.util.*
  */
 interface Commands {
   fun register(id: UUID, listener: CommandListener)
-  fun unregister(id: UUID)
-  fun unregister(listener: CommandListener, sort: Boolean = true)
+  fun unregisterAll(id: UUID)
+  fun unregister(id: UUID, listener: CommandListener, sort: Boolean = true)
   fun dispatch(command: Command, commander: CommandSender): CommandExecution
   fun reset()
 

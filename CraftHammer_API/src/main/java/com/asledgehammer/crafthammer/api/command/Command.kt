@@ -3,13 +3,11 @@
 package com.asledgehammer.crafthammer.api.command
 
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * **Command** TODO: Document.
  *
  * @author Jab
- *
  * @property name
  * @property args
  */
@@ -83,9 +81,7 @@ class Command(val name: String, val args: List<String>) {
       return ret
     }
 
-    /**
-     * TODO: Document.
-     */
+    /** TODO: Document. */
     @JvmOverloads
     fun combineArguments(args: Array<String?>, index: Int, glueString: String? = ""): String {
       require(args.isNotEmpty()) {
@@ -112,21 +108,18 @@ class Command(val name: String, val args: List<String>) {
    */
   class Response {
 
-    /** TODO: Document. */
+    var found = false
+    var handled = false
+    var denied = false
+      private set
     var message: String? = null
       private set
 
-    /** TODO: Document. */
-    var found = false
+    fun accept(message: String) {
+      this.message = message
+      this.handled = true
+    }
 
-    /** TODO: Document. */
-    var handled = false
-
-    /** TODO: Document. */
-    var denied = false
-      private set
-
-    /** TODO: Document. */
     fun deny(message: String) {
       this.message = message
       this.denied = true

@@ -9,20 +9,20 @@ import com.asledgehammer.crafthammer.util.component.TextComponent;
  */
 interface Messagable {
 
-  fun sendMessage(name: String, message: String)
-  fun sendMessage(name: String, message: TextComponent)
+  fun sendMessage(name: String = "Server", message: String)
+  fun sendMessage(name: String = "Server", message: TextComponent)
 
-  fun sendMessages(name: String, vararg messages: String) {
+  fun sendMessages(name: String = "Server", vararg messages: String) {
     if (messages.isEmpty()) return
     for (message in messages) sendMessage(name, message)
   }
 
-  fun sendMessages(name: String, vararg messages: TextComponent) {
+  fun sendMessages(name: String = "Server", vararg messages: TextComponent) {
     if (messages.isEmpty()) return
     for (message in messages) sendMessage(name, message)
   }
 
-  fun sendMessages(name: String, messages: Collection<TextComponent>) {
+  fun sendMessages(name: String = "Server", messages: Collection<TextComponent>) {
     if (messages.isEmpty()) return
     for (message in messages) sendMessage(name, message)
   }
