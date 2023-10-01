@@ -20,7 +20,7 @@ class PermissionGroup(name: String) : PermissionCollection(name) {
     var parentSpecific: Permission? = null
     if (parent != null) {
       parentSpecific = parent!!.get(context)
-      if (parentSpecific != null) returned = parentSpecific.flag
+      returned = parentSpecific.flag
     }
     val permissionSpecific: Permission? = get(context)
     if (permissionSpecific != null) {
